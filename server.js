@@ -1,4 +1,6 @@
 import express from "express";
+import bcrypt from "bcrypt-nodejs";
+import cors from "cors";
 
 const app = express();
 app.use(express.json());
@@ -9,7 +11,7 @@ const database = {
             id: "123",
             username: "blaz",
             email: "blaz@gmail.com",
-            password: "cookies",
+            password: "apples",
             entries: 0,
             joined: new Date()
         },
@@ -23,6 +25,8 @@ const database = {
         }
     ]
 }
+
+app.use(cors());
 
 app.get("/", (req, res) => {
     res.send(database.users);
