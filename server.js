@@ -9,7 +9,7 @@ const database = {
     users: [
         {
             id: "123",
-            username: "blaz",
+            name: "Blaz",
             email: "blaz@gmail.com",
             password: "apples",
             entries: 0,
@@ -17,7 +17,7 @@ const database = {
         },
         {
             id: "124",
-            username: "sally",
+            name: "Sally",
             email: "sally@gmail.com",
             password: "bananas",
             entries: 0,
@@ -35,17 +35,17 @@ app.get("/", (req, res) => {
 app.post("/signin", (req, res) => {
     if (req.body.email === database.users[0].email &&
         req.body.password === database.users[0].password) {
-        res.json("Successfully signed in");
+        res.json(database.users[0]); // Send the user object as the response
     } else {
         res.status(400).json("Error logging in");
     }
 })
 
 app.post("/register", (req, res) => {
-    const { username, email, password } = req.body;
+    const { name, email, password } = req.body;
     database.users.push({
         id: "125",
-        username: username,
+        name: name,
         email: email,
         password: password,
         entries: 0,
@@ -71,16 +71,16 @@ app.get("/profile/:id", (req, res) => {
 app.put("/image", (req, res) => {
     const { id } = req.body;
     let found = false;
-    database.users.forEach(user => {
+    database.users.forEach((user) => {
         if (user.id === id) {
             found = true;
             user.entries++;
             res.json(user.entries);
         }
-    })
+    });
     if (!found) {
         res.status(400).send("Not found");
     }
-})
+});
 
 app.listen(3000)
