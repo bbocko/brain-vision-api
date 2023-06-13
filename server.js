@@ -37,4 +37,6 @@ app.get("/profile/:id", (req, res) => { handleProfileGet(req, res, db) });
 
 app.put("/image", (req, res) => { handleImageSubmit(req, res, db) });
 
-app.listen(3000)
+const PORT = process.env.PORT;
+
+app.listen(PORT)
