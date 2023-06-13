@@ -2,7 +2,7 @@
   "name": "brain-vision-api",
   "version": "1.0.0",
   "description": "Backend for brain-vision app",
-  "main": "index.js",
+  "main": "server.js",
   "type": "module",
   "scripts": {
     "start": "nodemon server.js"
